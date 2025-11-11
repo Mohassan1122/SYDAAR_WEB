@@ -197,3 +197,45 @@ body {
   color: var(--accent);
   margin-bottom: 0.5rem;
 }
+
+
+
+
+/* Sidebar responsive behavior */
+@media (max-width: 991.98px) {
+  .col-lg-2.d-none.d-lg-block {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 75%;
+    max-width: 260px;
+    z-index: 1050;
+    background-color: var(--bg);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+  }
+
+  .col-lg-2.d-none.d-lg-block.active {
+    transform: translateX(0);
+  }
+
+  /* Overlay behind sidebar */
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+

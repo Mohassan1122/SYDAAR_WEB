@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaShoppingCart, FaThList, FaSearch } from "react-icons/fa";
+import { FaShoppingCart, FaThList, FaSearch, FaBars } from "react-icons/fa";
 
 export default function Navbar() {
   // const location = useLocation();
@@ -148,7 +148,7 @@ export default function Navbar() {
                 {categories.map((category) => (
                   <li key={category}>
                     <Link
-                      className="dropdown-item d-flex justify-content-between align-items-center text-light py-2"
+                      className="dropdown-item d-flex justify-content-between align-items-center text-light py-"
                       to={`/courses?category=${category}`}
                       onClick={() => setIsCategoryOpen(false)} // Close on click
                       style={{ borderRadius: "0.5rem" }}
@@ -191,11 +191,22 @@ export default function Navbar() {
                 </button>
               </div>
             </li>
-
-
           </ul>
         </div>
 
+        <button
+          className="btn btn-outline-light d-lg-none"
+          onClick={() => {
+            document
+              .querySelector(".col-lg-2.d-none.d-lg-block")
+              .classList.toggle("active");
+            document
+              .querySelector(".sidebar-overlay")
+              .classList.toggle("active");
+          }}
+        >
+          <FaBars />
+        </button>
       </div>
     </nav>
   );

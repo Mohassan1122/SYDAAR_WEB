@@ -82,6 +82,16 @@ export default function Layout({ children }) {
         <Sidebar />
         <div className="col-lg-10">{children}</div>
       </div>
+
+      <div
+        className="sidebar-overlay"
+        onClick={() => {
+          document
+            .querySelector(".col-lg-2.d-none.d-lg-block")
+            .classList.remove("active");
+          document.querySelector(".sidebar-overlay").classList.remove("active");
+        }}
+      ></div>
     </div>
   );
 }
