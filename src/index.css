@@ -1,0 +1,199 @@
+/* Basic theme, inspired by your mobile UI */
+
+:root {
+  --bg: #0C2D63;
+  --card: #7979a9;
+  --text: #5786e6;
+  --accent: #ff7a00;
+  --secondary: #2f54a8;
+  --muted: #64666c; /* Light muted text */
+  --glass: rgba(255, 255, 255, 0.04);
+}
+
+
+.container-fluid {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #ffffff;
+  background-color: white !important;;
+}
+/* Top navbar */
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 1.5rem;
+  color: #fff !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  margin-right: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--accent);
+}
+
+/* Cards */
+.card-auth,
+.card-feature {
+  background: var(--card);
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow for mobile look */
+  padding: 1.5rem;
+}
+
+/* Feature Cards on Landing Page */
+.card-feature {
+  background: var(--secondary);
+  transition: transform 0.3s ease-in-out;
+}
+.card-feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* primary button */
+.btn-primary {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.4);
+}
+.btn-primary:hover {
+  background: #e56d00;
+}
+.btn-primary:focus,
+.btn-primary:active {
+  box-shadow: none !important;
+  background: #e56d00;
+}
+
+/* secondary / google button style */
+.btn-outline-google {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+
+.btn-outline-google:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* small helper */
+.small-muted {
+  color: var(--muted);
+}
+
+/* form element style */
+.form-control {
+  background: rgba(255, 255, 255, 0.08); /* Slightly more prominent background */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+  color: #fff;
+  height: 50px;
+  border-radius: 8px;
+}
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 0.25rem rgba(255, 122, 0, 0.25);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+
+/* light-mode override (togglable) - kept for structural integrity */
+.light-mode body,
+.light-mode .app-shell {
+  background: #f8fafc;
+  color: #0b2b60;
+}
+.light-mode .card-auth, .light-mode .card-feature {
+  background: #ffffff;
+  color: #0b2b60;
+  border: 1px solid #e6eef8;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.1);
+}
+.light-mode .form-control {
+  background: #f3f7fb;
+  color: #0b2b60;
+  border: 1px solid #e0ecfb;
+}
+.light-mode .form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 122, 0, 0.4);
+}
+.light-mode .navbar-dark,
+.light-mode .navbar {
+  background: white !important;
+}
+.light-mode .btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.light-mode .btn-outline-google {
+  color: #0b2b60;
+  border-color: #e0ecfb;
+  background: #f3f7fb;
+}
+
+/* small screens: center vertically */
+.auth-wrapper {
+  min-height: calc(100vh - 112px);
+  display: flex;
+  align-items: center;
+}
+
+/* verify code boxes - improved for web view */
+.pin-input {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 8px;
+  margin-right: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Landing Page Hero Section */
+.hero-text h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+@media (max-width: 992px) {
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Custom Icon placeholders */
+.feature-icon {
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
