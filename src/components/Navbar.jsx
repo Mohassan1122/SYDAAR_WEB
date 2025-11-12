@@ -130,7 +130,7 @@ export default function Navbar() {
         >
           <ul className="navbar-nav mx-auto align-items-lg-center">
             {/* Category Dropdown (Responsive) */}
-            <li className="nav-item dropdown me-lg-2 mb-lg-0 my-sm-3">
+            <li className="nav-item dropdown me-lg-2 mb-lg-0 my-xsm-3">
               <button
                 className="btn fw-medium dropdown-toggle w-100 w-lg-auto py-2" // w-100 on mobile
                 type="button"
@@ -210,7 +210,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="btn btn-outline-light d-lg-none mt-sm-2"
+          className="btn btn-outline-light d-lg-none  my-xsm-3"
           onClick={() => {
             document
               .querySelector(".col-lg-2.d-none.d-lg-block")

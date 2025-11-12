@@ -237,5 +237,7 @@ body {
     opacity: 1;
     visibility: visible;
   }
+  .my-xsm-3 {
+    margin: 10px 0;
+  }
 }
-
