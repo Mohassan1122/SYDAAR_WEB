@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaShoppingCart, FaThList, FaSearch, FaBars } from "react-icons/fa";
+import {
+  FaShoppingCart,
+  FaThList,
+  FaSearch,
+  FaBars,
+  FaChevronRight,
+} from "react-icons/fa";
+import logo from "../assets/logo.png";
 
 export default function Navbar() {
   // const location = useLocation();
@@ -39,11 +46,16 @@ export default function Navbar() {
       <div className="container-fluid px-5">
         {/* Brand Logo and Mobile Toggler */}
         <Link className="navbar-brand fw-bold fs-4" to="/">
-          <i
-            className="fas fa-graduation-cap me-2"
-            style={{ color: "var(--accent)" }}
-          ></i>
-          SYDAAR
+          <img
+            src={logo}
+            alt="logo"
+            className="img-fluid"
+            style={{
+              width: "150px",
+              height: "25px",
+              color: "var(--accent)",
+            }}
+          />
         </Link>
 
         {/* User controls (Cart/Avatar) - visible on all screens, but moved next to toggler on mobile */}
@@ -51,12 +63,15 @@ export default function Navbar() {
           {/* Cart Icon / Notification */}
           <div className="ms-4 me-3">
             <Link
-              to="/cart"
+              to="/enrollment"
               className="position-relative text-light text-decoration-none"
             >
-              <span className="fs-4" style={{ color: "var(--accent)" }}>
-                {" "}
-                <FaShoppingCart />{" "}
+              <span>
+                <i className="fs-6 small" style={{ color: "var(--accent)" }}>
+                  {" "}
+                  {/* <FaShoppingCart /> */}
+                  Enrollments{" "}
+                </i>
               </span>
               <span
                 className="position-absolute translate-middle badge rounded-circle p-1"
@@ -115,9 +130,9 @@ export default function Navbar() {
         >
           <ul className="navbar-nav mx-auto align-items-lg-center">
             {/* Category Dropdown (Responsive) */}
-            <li className="nav-item dropdown me-lg-2 mb-lg-0">
+            <li className="nav-item dropdown me-lg-2 mb-lg-0 my-sm-3">
               <button
-                className="btn fw-medium dropdown-toggle w-100 w-lg-auto" // w-100 on mobile
+                className="btn fw-medium dropdown-toggle w-100 w-lg-auto py-2" // w-100 on mobile
                 type="button"
                 onClick={toggleCategory}
                 aria-expanded={isCategoryOpen}
@@ -128,7 +143,7 @@ export default function Navbar() {
                   borderColor: "var(--card)",
                 }}
               >
-                <FaThList className="me-2" />
+                <FaThList className="me-3" />
                 Category
               </button>
               <ul
@@ -148,13 +163,13 @@ export default function Navbar() {
                 {categories.map((category) => (
                   <li key={category}>
                     <Link
-                      className="dropdown-item d-flex justify-content-between align-items-center text-light py-"
+                      className="dropdown-item d-flex justify-content-between align-items-center text-light"
                       to={`/courses?category=${category}`}
                       onClick={() => setIsCategoryOpen(false)} // Close on click
                       style={{ borderRadius: "0.5rem" }}
                     >
                       {category}
-                      <i className="fas fa-chevron-right small-muted small"></i>
+                      <FaChevronRight className="small-mute small" />
                     </Link>
                   </li>
                 ))}
@@ -195,7 +210,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="btn btn-outline-light d-lg-none"
+          className="btn btn-outline-light d-lg-none mt-sm-2"
           onClick={() => {
             document
               .querySelector(".col-lg-2.d-none.d-lg-block")

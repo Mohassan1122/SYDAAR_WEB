@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import Onboarding from "./pages/Onboarding";
 import Courses from "./pages/Courses";
 import CourseDetail from "./pages/CourseDetail";
+import QuizPage from "./pages/QuizPage";
 
 
 
@@ -49,8 +50,17 @@ export default function App() {
             // path="/course/:id"
             path="/courses/1"
             element={
-              <Layout >
+              <Layout>
                 <CourseDetail />
+              </Layout>
+            }
+          />
+          <Route
+            // path="/course/:id"
+            path="/quiz"
+            element={
+              <Layout>
+                <QuizPage />
               </Layout>
             }
           />

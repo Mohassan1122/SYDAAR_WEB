@@ -212,23 +212,36 @@ export default function Courses() {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <div className="mb-4">
-            <small className="small-muted">
-              <Link
-                to="/dashboard"
-                className="small-muted text-decoration-none"
-              >
-                Home
-              </Link>
-              <FaChevronRight className="mx-2" style={{ fontSize: "0.6rem" }} />
-              Courses
-            </small>
+             <nav aria-label="breadcrumb" className="mb-4">
+                          <ol className="breadcrumb">
+                            <li className="breadcrumb-item">
+                              <Link
+                                to="/dashboard"
+                                className="text-decoration-none"
+                                style={{ color: "var(--text-muted)" }}
+                              >
+                                Home
+                              </Link>
+                            </li>
+                            <li className="breadcrumb-item">
+                              <Link
+                                to="/courses"
+                                className="text-decoration-none"
+                                style={{ color: "var(--text-muted)" }}
+                              >
+                                Courses
+                              </Link>
+                            </li>
+
+                          </ol>
+                        </nav>
+
           </div>
-          <p className="text-muted mb-0">
+          <small className="text-muted">
             We found {courses.length} courses available for you
-          </p>
+          </small>
         </div>
         <div className="d-flex align-items-center gap-3">
-          <span className="text-muted">See</span>
 
           {/* View Mode Toggle */}
           <div className="btn-group" role="group">

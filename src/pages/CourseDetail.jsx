@@ -1,6 +1,6 @@
 import React, { useState } from "react"; // Added useState import
 import { Link } from "react-router-dom";
-// import courseImg from "../assets/course.jpg";
+import BannerImg from "../assets/img7.jpg";
 import {
   FaPlayCircle,
   FaFileAlt,
@@ -295,17 +295,22 @@ export default function CourseDetail() {
 
             {/* Prerequisites Alert */}
             <div
-              className="alert alert-warning mb-4"
+              className="alert alert-success mb-4"
               style={{
-                backgroundColor: "rgba(255,193,7,0.1)",
+                // backgroundColor: "rgba(255,193,7,0.1)",
                 borderColor: "rgba(255,193,7,0.3)",
               }}
             >
-              <h6 className="fw-bold mb-2">Course Prerequisites</h6>
-              <p className="mb-2 small">
-                Please note that this course has the following prerequisites
-                which must be completed before it can be accessed
-              </p>
+                 <div
+                          style={{
+                            width: "100%",
+                            height: "200px",
+                            overflow: "hidden",
+                            background: "white",
+                          }}
+                        >
+                          <img src={BannerImg} alt="Profile" className="img-fluid" />
+                        </div>
               <ul className="mb-0 small">
                 {course.prerequisites.map((prereq, index) => (
                   <li key={index}>{prereq}</li>
@@ -328,7 +333,6 @@ export default function CourseDetail() {
                 ))}
               </div>
             </div>
-
 
             {/* Learning Objectives */}
             <div className="mb-5">
@@ -446,13 +450,9 @@ export default function CourseDetail() {
                             <div className="d-flex align-items-center flex-grow-1">
                               <div className="me-3">
                                 {module.completed ? (
-                                  <i className="fas fa-check-circle text-success"></i>
+                                  <FaCheckCircle className="text-success" />
                                 ) : (
-                                  <i
-                                    className={`fas ${getModuleIcon(
-                                      module.type
-                                    )} text-muted`}
-                                  ></i>
+                                  getModuleIcon(module.type)
                                 )}
                               </div>
 
@@ -605,10 +605,7 @@ export default function CourseDetail() {
                 <h6 className="fw-bold mb-3">Course categories</h6>
                 <div className="d-flex flex-wrap gap-2">
                   {course.categories.map((category, index) => (
-                    <Link
-                      to="#"
-                      className="text-decoration-none"
-                    >
+                    <Link to="#" className="text-decoration-none">
                       <span key={index} className="badge bg-light text-muted">
                         {category}
                       </span>
