@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaPlay, } from "react-icons/fa";
 
 export default function QuizPage() {
   const courses = [
@@ -93,10 +94,12 @@ export default function QuizPage() {
           <p className="text-muted small mt-1">
             Track your learning progress and course completion rate
           </p>
-        </div>
-        <button className="btn btn-primary px-4">
-          <i className="fas fa-play me-2"></i>Start New Quiz
-        </button>
+        </div> 
+
+        <Link to="/quiz/start" className="btn btn-primary px-4">
+          <FaPlay className=" me-2" />
+          Start New Quiz
+        </Link>
       </div>
 
       {/* Courses Progress Section */}

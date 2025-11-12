@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Routes, Route, } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Layout from "./components/Layout";
@@ -13,6 +13,7 @@ import Onboarding from "./pages/Onboarding";
 import Courses from "./pages/Courses";
 import CourseDetail from "./pages/CourseDetail";
 import QuizPage from "./pages/QuizPage";
+import QuizStart from "./pages/QuizStart";
 
 
 
@@ -61,6 +62,14 @@ export default function App() {
             element={
               <Layout>
                 <QuizPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/quiz/start"
+            element={
+              <Layout>
+                <QuizStart />
               </Layout>
             }
           />
