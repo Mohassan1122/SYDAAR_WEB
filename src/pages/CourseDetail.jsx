@@ -207,7 +207,7 @@ export default function CourseDetail() {
       "Data engineer, or database designer",
       "Who desires to build a personal toolbox of data modeling best practices and techniques",
     ],
-    materials: ["Videos", "Booklets"],
+    materials: ["Videos", "Booklets", "Audio"],
     categories: [
       "Design",
       "Business",
@@ -360,7 +360,7 @@ export default function CourseDetail() {
               </ul>
             </div>
 
-            {/* Target Audience */}
+            {/* Target Audience
             <div className="mb-5">
               <h5 className="fw-bold mb-3">Target Audience</h5>
               <ul className="list-unstyled">
@@ -371,7 +371,7 @@ export default function CourseDetail() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
 
             {/* Curriculum */}
             <div className="mb-5">
@@ -555,6 +555,23 @@ export default function CourseDetail() {
               </div>
             </div>
 
+            {/* Enroll now */}
+            <div className="card border-0 shadow-sm mb-4">
+               <div className="card-body">
+                <div className="d-flex align-items-center gap-2 mb-3">
+                  <h3 className="fw-bold text-primary mb-0">${course.price}</h3>
+                  <span className="text-muted text-decoration-line-through">${course.originalPrice}</span>
+                  <span className="badge bg-danger">{course.discount}% OFF</span>
+                </div>
+
+                <div className="d-grid gap-2">
+                  <button className="btn btn-primary">
+                    Enroll Now
+                  </button>
+
+                </div>
+              </div>
+            </div>
             {/* Course Details */}
             <div className="card border-0 shadow-sm mb-4">
               <div className="card-body">

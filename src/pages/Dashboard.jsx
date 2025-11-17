@@ -3,14 +3,19 @@ import { Link } from "react-router-dom";
 import {
   FaPlay,
   FaDollarSign,
-  FaClock,
   FaCalendarAlt,
   FaLevelUpAlt,
+  FaClock,
   FaCalculator,
   FaGraduationCap,
 } from "react-icons/fa";
 
 
+const IconMap = {
+  FaClock: FaClock,
+  FaCalculator: FaCalculator,
+  FaGraduationCap: FaGraduationCap,
+};
 
 const stats = [
   { value: "21.2K", label: "Hours Spent", detail: "+5.2%", icon: "FaClock" },
@@ -59,7 +64,10 @@ const quiz = [
 ];
 
 const StatCard = ({ stat }) => {
-  const Icon = stat.icon;
+  const Icon = IconMap[stat.icon];
+
+  // Add a fallback check for safety
+  if (!Icon) return null;
 
   return (
     <div className="col-lg-4 col-md-6 mb-4">

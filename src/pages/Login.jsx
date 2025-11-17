@@ -1,32 +1,56 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { findUserByEmail } from "../utils/fakeAuth";
+import { useAuth } from "../context/AuthContext";
 import Footer from "../components/Footer";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const nav = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [keepLoggedIn, setKeepLoggedIn] = useState(true);
+  const { login, loading } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !password) {
+
+    // Validation
+    if (!formData.email || !formData.password) {
       toast.error("Please fill all fields");
       return;
     }
-    const user = findUserByEmail(email);
-    if (!user || user.password !== password) {
-      toast.error("Invalid email or password");
+
+    if (!formData.email.includes("@")) {
+      toast.error("Please enter a valid email address");
       return;
     }
-    // fake login: mark session in localStorage
-    localStorage.setItem(
-      "sydaar_session",
-      JSON.stringify({ email: user.email })
-    );
-    toast.success("Login successful");
-    nav("/dashboard");
+
+    console.log("📝 Form data before login:", formData);
+
+    const result = await login(formData);
+
+    if (result.success) {
+      toast.success("Login successful!");
+      navigate("/dashboard");
+    } else {
+      // Show more detailed error message
+      const errorMessage =
+        result.error?.response?.data?.message ||
+        result.error?.message ||
+        "Login failed. Please check your credentials.";
+      toast.error(errorMessage);
+      console.error("Login error details:", result.error);
+    }
   };
 
   return (
@@ -36,24 +60,34 @@ export default function Login() {
           <div className="card card-auth p-4 rounded-4">
             <h3 className="mb-3">Login</h3>
             <p className="small-muted">Please enter your details to login</p>
+
             <form onSubmit={handleSubmit} className="mt-3">
               <div className="mb-3">
                 <label className="form-label small-muted">Email</label>
                 <input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="form-control"
-                  placeholder="email address"
+                  placeholder="email@example.com"
+                  type="email"
+                  required
+                  autoComplete="email"
                 />
               </div>
+
               <div className="mb-3">
                 <label className="form-label small-muted">Password</label>
                 <input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   type="password"
                   className="form-control"
-                  placeholder="Password"
+                  placeholder="Enter your password"
+                  required
+                  autoComplete="current-password"
+                  minLength={6}
                 />
               </div>
 
@@ -63,6 +97,8 @@ export default function Login() {
                     className="form-check-input"
                     type="checkbox"
                     id="keep"
+                    checked={keepLoggedIn}
+                    onChange={(e) => setKeepLoggedIn(e.target.checked)}
                   />
                   <label
                     className="form-check-label small-muted"
@@ -76,8 +112,13 @@ export default function Login() {
                 </Link>
               </div>
 
-              <button className="btn btn-primary w-100" style={{ background: "var(--bg)" }}>
-                Login
+              <button
+                className="btn btn-primary w-100"
+                style={{ background: "var(--bg)" }}
+                disabled={loading}
+                type="submit"
+              >
+                {loading ? "Logging in..." : "Login"}
               </button>
             </form>
 
@@ -100,7 +141,7 @@ export default function Login() {
           </div>
         </div>
       </div>
-       <Footer />
+      <Footer />
     </div>
   );
 }
